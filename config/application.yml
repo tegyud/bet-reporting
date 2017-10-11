@@ -1,0 +1,9 @@
+spring:
+  main:
+    banner-mode: "off"
+
+data:
+  path: "data/bets.csv"
+
+exchange:
+  rate: 1.14

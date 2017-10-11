@@ -1,0 +1,41 @@
+buildscript {
+	ext {
+		springBootVersion = '2.0.0.M4'
+	}
+	repositories {
+		mavenCentral()
+		maven { url "https://repo.spring.io/snapshot" }
+		maven { url "https://repo.spring.io/milestone" }
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+group = 'com.ppb.assessment'
+version = '0.1.0-SNAPSHOT'
+sourceCompatibility = 1.8
+
+repositories {
+	mavenCentral()
+	maven { url "https://repo.spring.io/snapshot" }
+	maven { url "https://repo.spring.io/milestone" }
+}
+
+configurations.all {
+	resolutionStrategy.dependencySubstitution {
+		substitute module('org.springframework.boot:spring-boot-starter-logging') with module('org.springframework.boot:spring-boot-starter-log4j2:+')
+	}
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter'
+	runtimeOnly 'com.lmax:disruptor:+',
+			'com.fasterxml.jackson.core:jackson-databind',
+			'com.fasterxml.jackson.dataformat:jackson-dataformat-yaml'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}

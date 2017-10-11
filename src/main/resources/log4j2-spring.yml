@@ -1,0 +1,15 @@
+Configuration:
+  status: warn
+
+  Appenders:
+    Console:
+      name: console
+      target: SYSTEM_OUT
+      PatternLayout: {pattern: "%d{HH:mm:ss.SSS} %highlight{%p} [%t] %c{1} - %m%n"}
+
+  Loggers:
+    Root:
+      level: error
+      AppenderRef:
+        - {ref: console, level: info}
+    Logger: {name: com.ppb, level: info}
