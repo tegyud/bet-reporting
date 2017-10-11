@@ -1,0 +1,2 @@
+# bet-reporting
+./gradlew bootRun
